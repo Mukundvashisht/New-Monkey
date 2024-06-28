@@ -17,8 +17,6 @@ export default class News extends Component {
     document.title = `NewsMonkey - ${this.props.category}`;
   }
 
-
-
   async componentDidMount() {
     await this.fetchNews();
   }
@@ -77,34 +75,16 @@ export default class News extends Component {
     return (
       <>
         {this.state.loading && <Spinner />}
-        <InfiniteScroll
-          dataLength={(this.state.articles || []).length}
-          next={this.fetchMoreData}
-          hasMore={(this.state.articles || []).length !== this.state.totalResults}
-          loader={<Spinner />}
-        >
+        <InfiniteScroll dataLength={(this.state.articles || []).length} next={this.fetchMoreData} hasMore={(this.state.articles || []).length !== this.state.totalResults} loader={<Spinner />}>
           <div className="container">
-            <h2 className="my-3">
-              NewMonkey Top Headlines - {this.props.category}
-            </h2>
+            <h2 className="my-3">NewMonkey Top Headlines - {this.props.category}</h2>
             <div className="row my-3">
               {this.state.articles.map((elements, i) => {
                 return (
-                  <div
-                    className="col-md-6 col-lg-4 col-xl-3 my-2"
-                    key={elements.url}
-                  >
+                  <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
                     <NewsItem
-                      title={
-                        elements.title
-                          ? elements.title.slice(0, 47)
-                          : "Title Not Available, Click on Read More To Check The News"
-                      }
-                      description={
-                        elements.description
-                          ? elements.description.slice(0, 58)
-                          : "No Description available, Click on Read More To Check The News"
-                      }
+                      title={elements.title ? elements.title.slice(0, 47) : "Title Not Available, Click on Read More To Check The News"}
+                      description={elements.description ? elements.description.slice(0, 58) : "No Description available, Click on Read More To Check The News"}
                       imageUrl={elements.urlToImage}
                       newsUrl={elements.url}
                       author={elements.author}
