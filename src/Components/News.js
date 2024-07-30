@@ -23,7 +23,7 @@ export default class News extends Component {
     fetchNews = async () => {
 
         const { page } = this.state;
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=a80e2b1f6c7a457fafa947c444d097cc&page=${page}&pageSize=${this.state.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a80e2b1f6c7a457fafa947c444d097cc&page=${page}&pageSize=${this.state.pageSize}`;
         this.setState({
             loading: true,
         })
@@ -63,7 +63,7 @@ export default class News extends Component {
                 {this.state.loading && <Spinner />}
                 <div className="row my-3">
                     {!this.state.loading && this.state.articles.map((elements) => {
-                        return <div className="col-md-3 my-2" key={elements.url}>
+                        return <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
                             <NewsItem title={elements.title ? elements.title.slice(0, 47) : "Title Not Available, Click on Read More To Check The News"} description={elements.description ? elements.description.slice(0, 58) : "No Description available, Click on Read More To Check The News"} imageUrl={elements.urlToImage} newsUrl={elements.url} />
                         </div>
                     })}
