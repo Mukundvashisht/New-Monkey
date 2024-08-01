@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import DummyImage from '../Assets/DummyImage.png'
+import {
+    Link
+} from "react-router-dom";
 
 export default class NewsItem extends Component {
     render() {
@@ -14,7 +17,7 @@ export default class NewsItem extends Component {
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{description}</p>
                         <p className="card-text"><small className="text-body-secondary">By {!author ? "Unknown" : author} on {new Date(date).toDateString()}</small></p>
-                        <a href={newsUrl} target='_blank' rel="noopener noreferrer" className="btn btn-sm btn-dark">Read More</a>
+                        <Link to={newsUrl} target='_blank' rel="noopener noreferrer" className="btn btn-sm btn-dark">Read More</Link>
                     </div>
                 </div>
             </div>

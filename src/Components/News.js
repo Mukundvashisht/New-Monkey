@@ -35,6 +35,7 @@ export default class News extends Component {
         this.setState({
             articles: parsedData.articles,
             totalResults: parsedData.totalResults,
+            loading: false
         })
     }
 
@@ -73,12 +74,24 @@ export default class News extends Component {
     //     })
     // }
 
+    fetchMoreData = async () => {
+        this.setState({ page: this.state.page + 1 })
+        const { page } = this.state;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ec470444da37416f8968572080a7aa90&page=${page}&pageSize=${this.state.pageSize}`;
+        let data = await fetch(url);
+        let parsedData = await data.json()
+        this.setState({
+            articles: this.state.articles.concat(parsedData.articles),
+            totalResults: parsedData.totalResults,
+        })
+    };
+
 
     render() {
         return (
             // <div className='container my-3 d-flex justify-content-between' style={{ flexDirection: "column", height: "100vh" }}>
             <>
-                {/* {!this.state.loading && <Spinner />} */}
+                {this.state.loading && <Spinner />}
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
@@ -89,6 +102,7 @@ export default class News extends Component {
                         <h2 className='my-3'>NewMonkey Top Headlines - {this.props.category}</h2>
                         <div className="row my-3">
                             {this.state.articles.map((elements) => {
+                                // return <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
                                 return <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
                                     <NewsItem title={elements.title ? elements.title.slice(0, 47) : "Title Not Available, Click on Read More To Check The News"} description={elements.description ? elements.description.slice(0, 58) : "No Description available, Click on Read More To Check The News"} imageUrl={elements.urlToImage} newsUrl={elements.url} author={elements.author} date={elements.publishedAt} />
                                 </div>
