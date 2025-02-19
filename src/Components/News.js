@@ -60,7 +60,9 @@ export default class News extends Component {
     fetchMoreData = async () => {
         this.setState({ page: this.state.page + 1 })
         const { page } = this.state;
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ec470444da37416f8968572080a7aa90&page=${page}&pageSize=${this.state.pageSize}`;
+        // api key is in env file and needs to define here --->
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apikey}&page=${page + 1}&pageSize=${this.state.pageSize}`;
+        // let url = `https://newsapi.org/v2/top-headlines?country=${in}&category=${general}&apiKey=&page=${1}&pageSize=${10}`;
         let data = await fetch(url);
         let parsedData = await data.json()
         this.setState({
@@ -84,8 +86,9 @@ export default class News extends Component {
                     <div className="container">
                         <h2 className='my-3'>NewMonkey Top Headlines - {this.props.category}</h2>
                         <div className="row my-3">
-                            {this.state.articles.map((elements) => {
+                            {this.state.articles.map((elements, i) => {
                                 // return <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
+
                                 return <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
                                     <NewsItem title={elements.title ? elements.title.slice(0, 47) : "Title Not Available, Click on Read More To Check The News"} description={elements.description ? elements.description.slice(0, 58) : "No Description available, Click on Read More To Check The News"} imageUrl={elements.urlToImage} newsUrl={elements.url} author={elements.author} date={elements.publishedAt} />
                                 </div>

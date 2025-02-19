@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/sampleOutput.json
+/sampleOutput2.json
+/src/Components/api.env
 
 # testing
 /coverage

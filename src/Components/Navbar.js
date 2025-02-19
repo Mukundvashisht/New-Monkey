@@ -9,7 +9,7 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
                 <nav className="navbar navbar-expand-lg bg-dark">
                     <div className="container-fluid">
                         <Link className="navbar-brand text-white" to="/">Navbar</Link>
