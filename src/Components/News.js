@@ -63,14 +63,8 @@ export default class News extends Component {
     this.setState({ page: this.state.page + 1 });
     const { page } = this.state;
     const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-    // api key is in env file and needs to define here --->
-    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apikey}&page=${page + 1}&pageSize=${this.state.pageSize}`;
-    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country
-    //   }&category=${this.props.category
-    //   }&apiKey=ec470444da37416f8968572080a7aa90&page=${page + 1}&pageSize=${this.state.pageSize
-    //   }`;
+
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apiKey}&page=${page + 1}&pageSize=${this.state.pageSize}`;
-    // let url = `https://newsapi.org/v2/top-headlines?country=${in}&category=${general}&apiKey=&page=${1}&pageSize=${10}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
@@ -82,7 +76,6 @@ export default class News extends Component {
 
   render() {
     return (
-      // <div className='container my-3 d-flex justify-content-between' style={{ flexDirection: "column", height: "100vh" }}>
       <>
         {this.state.loading && <Spinner />}
         <InfiniteScroll
@@ -97,8 +90,6 @@ export default class News extends Component {
             </h2>
             <div className="row my-3">
               {this.state.articles.map((elements, i) => {
-                // return <div className="col-md-6 col-lg-4 col-xl-3 my-2" key={elements.url}>
-
                 return (
                   <div
                     className="col-md-6 col-lg-4 col-xl-3 my-2"
