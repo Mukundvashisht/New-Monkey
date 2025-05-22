@@ -4,7 +4,6 @@ import Spinner from "./spinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class News extends Component {
-  // const apiKey = process.env.REACT_APP_NEWS_API_KEY;
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +59,6 @@ export default class News extends Component {
     this.setState({ page: this.state.page + 1 });
     const { page } = this.state;
     const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apiKey}&page=${page + 1}&pageSize=${this.state.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
