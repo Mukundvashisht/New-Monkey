@@ -6,8 +6,7 @@
 .pnp.js
 /sampleOutput.json
 /sampleOutput2.json
-/src/Components/api.env
-/src/Components/.env
+# /.env
 
 # testing
 /coverage
