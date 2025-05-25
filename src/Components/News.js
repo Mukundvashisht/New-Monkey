@@ -22,7 +22,8 @@ export default class News extends Component {
   fetchNews = async () => {
     const { page } = this.state;
     const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ec470444da37416f8968572080a7aa90&page=${page}&pageSize=${this.state.pageSize}`;
+    // enter you api key in env file
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apiKey}&page=${page}&pageSize=${this.state.pageSize}`;
     this.setState({
       loading: true,
     });
@@ -59,6 +60,7 @@ export default class News extends Component {
     this.setState({ page: this.state.page + 1 });
     const { page } = this.state;
     const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+    // enter you api key in env file
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${apiKey}&page=${page + 1}&pageSize=${this.state.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
