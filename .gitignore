@@ -6,7 +6,6 @@
 .pnp.js
 /sampleOutput.json
 /sampleOutput2.json
-/.env
 
 # testing
 /coverage
@@ -26,3 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+
+/.env
